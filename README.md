@@ -41,7 +41,7 @@
 * [ ] Executor
 * [ ] Builtins commands
 
-### Contracts
+### Interfaces 
 Lexer will return a list of tokens
 the lexer return will look like this:
 ```c
