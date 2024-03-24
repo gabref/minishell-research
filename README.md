@@ -89,6 +89,7 @@ typedef struct s_command
 {
     char    *command;
     char    **args;
+    char    *heredoc_file_name;
     t_token *fd;
 } t_command;
 
