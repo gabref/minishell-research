@@ -28,3 +28,78 @@
 ## Some practice Studies
 * [AST in typescript](./ast-example-js/)
 * [AST in C](./ast-example-c/)
+
+## PLANNING AND DIVISION OF TASKS
+
+### Requirements
+* [x] Mandatory part
+* [ ] Bonus part (will do?)
+
+### 4 Tasks
+* [ ] Lexer
+* [ ] Parser
+* [ ] Executor
+* [ ] Builtins commands
+
+### Contracts
+Lexer will return a list of tokens
+the lexer return will look like this:
+```c
+typedef enum e_token_type
+{
+    WORD,
+    PIPE,
+    SEMICOLON,
+    GREAT,
+    DGREAT,
+    LESS,
+    DLESS,
+    NEWLINE,
+    AND,
+    OR,
+    EOF
+} t_token_type;
+
+typedef struct s_token
+{
+    // first two are for debugging porpuses
+    int         input_start_idx;
+    int         current_idx;
+    char        *value;
+    t_token_type type;
+} t_token;
+
+typedef struct s_lexer
+{
+    t_list *tokens;
+    int     size;
+} t_lexer;
+
+/** 
+  * input will be the entry string from the prompt
+  * return will have a list of tokens that represent the input
+  */
+t_lexer *lexer(char *input);
+```
+
+Parser will return a list of commands
+the parser return will look like this:
+```c
+typedef struct s_command
+{
+    char    *command;
+    char    **args;
+    t_token *fd;
+} t_command;
+
+typedef struct s_commands
+{
+    t_list *commands;
+} t_commands;
+```
+
+Executor will execute the commands
+
+<br>
+
+Builtins will be the commands that are built in the shell
