@@ -11,6 +11,7 @@
 * [Interesting collection of references](https://minishell.simple.ink/)
 * [Nicee explanation of each of the allowed functions - use google translator](https://velog.io/@chez_bono/Minishell)
 * [Bigger Picture](https://whimsical.com/minishell-architecture-big-picture-7b9N8PL3qHrddbs977mQ2J)
+* [Suspectedoceano collection of resources](https://suspectedoceano.notion.site/Cursus-97a5ef0ea22b47779a24de1299e53e9b)
 
 ## Important
 * [List of edge cases](https://docs.google.com/spreadsheets/d/1TDwyd-S0WBAXehgkrKQtBJ6zquQ4p6k7JfE5g3jICNA/edit#gid=0)
