@@ -81,42 +81,8 @@ INIT_MINISHELL -> GET_USER_DATA -> LEXER -> EXPANDER -> PARSER -> EXECUTOR
     * [ ] Handle newlines
     * [ ] Handle EOF
 
-### EXPANDER
-* [ ] Expand the tokens
-    * [ ] Handle environment variables
-        example: $HOME -> /home/user (attention to quotes double quotes edge cases)
-    * [ ] Handle tilde
-        * ~ -> home directory
-    * [ ] Handle wildcard (bonus) -> glob -> create a copy of the command with the wildcard expanded
-    * [ ] Handle command substitution 
-        * example: echo $(ls) -> execute ls and replace the $(ls) with the output of the command
-
-### PARSER
-* [ ] Parse the tokens (return a list of commands)
-    * [ ] Handle redirections
-    * [ ] Handle pipes
-    * [ ] Handle semicolons
-    * [ ] Handle newlines
-    * [ ] Handle EOF
-
-### EXECUTOR
-* [ ] Execute the commands
-    * [ ] Handle redirections (open files and redirect stdin, stdout, stderr)
-    * [ ] Handle executables
-        * [ ] Handle builtins
-            * [ ] echo
-            * [ ] cd (cd - and cd ~)
-            * [ ] pwd
-            * [ ] export
-            * [ ] unset
-            * [ ] env
-            * [ ] exit
-    * [ ] wait for the children to finish and handle errors
-    * [ ] clean memory, loop will restart
-
-### Interfaces 
-Lexer will return a list of tokens
-the lexer return will look like this:
+Lexer will return a list of tokens <br>
+The lexer structure could look like this:
 ```c
 typedef enum e_token_type
 {
@@ -155,8 +121,26 @@ typedef struct s_lexer
 t_lexer *lexer(char *input);
 ```
 
-Parser will return a list of commands
-the parser return will look like this:
+### EXPANDER
+* [ ] Expand the tokens
+    * [ ] Handle environment variables
+        example: $HOME -> /home/user (attention to quotes double quotes edge cases)
+    * [ ] Handle tilde
+        * ~ -> home directory
+    * [ ] Handle wildcard (bonus) -> glob -> create a copy of the command with the wildcard expanded
+    * [ ] Handle command substitution 
+        * example: echo $(ls) -> execute ls and replace the $(ls) with the output of the command
+
+### PARSER
+* [ ] Parse the tokens (return a list of commands)
+    * [ ] Handle redirections
+    * [ ] Handle pipes
+    * [ ] Handle semicolons
+    * [ ] Handle newlines
+    * [ ] Handle EOF
+
+Parser will return a list of commands <br>
+Each command could look like this:
 ```c
 typedef struct s_command
 {
@@ -172,8 +156,17 @@ typedef struct s_commands
 } t_commands;
 ```
 
-Executor will execute the commands
-
-<br>
-
-Builtins will be the commands that are built in the shell
+### EXECUTOR
+* [ ] Execute the commands
+    * [ ] Handle redirections (open files and redirect stdin, stdout, stderr)
+    * [ ] Handle executables
+        * [ ] Handle builtins
+            * [ ] echo
+            * [ ] cd (cd - and cd ~)
+            * [ ] pwd
+            * [ ] export
+            * [ ] unset
+            * [ ] env
+            * [ ] exit
+    * [ ] wait for the children to finish and handle errors
+    * [ ] clean memory, loop will restart
