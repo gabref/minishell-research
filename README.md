@@ -29,17 +29,90 @@
 * [AST in typescript](./ast-example-js/)
 * [AST in C](./ast-example-c/)
 
-## PLANNING AND DIVISION OF TASKS
+# PLANNING AND DIVISION OF TASKS
 
 ### Requirements
 * [x] Mandatory part
 * [ ] Bonus part (will do?)
 
-### 4 Tasks
-* [ ] Lexer
-* [ ] Parser
-* [ ] Executor
-* [ ] Builtins commands
+## Parts of the Program
+<br>
+
+```
+INIT_MINISHELL -> GET_USER_DATA -> LEXER -> EXPANDER -> PARSER -> EXECUTOR
+```
+
+### INIT_MINISHELL
+* [ ] Initialize structure minishell
+    ```c
+    typedef struct s_minishell
+    {
+        t_list  *env; // or hashmap
+        t_list  *commands;
+        pid_t   pid; // pid of the shell
+        pid_t   *pids; // pids of the children
+        char    **history; // history of commands
+    } t_minishell;
+    ```
+* [ ] Initialize environment variables
+    * SHLVL - shell level
+    * PWD - present working directory
+    * HOME - home directory
+    * OLDPWD - old present working directory
+    * PATH - path to the executables
+    * _ - name of the shell
+
+### GET_USER_DATA
+* [ ] Get user input
+    * [ ] Handle signals
+        * need a function handle_exit, that frees all the memory of all parts of the program
+    * [ ] Create prompt
+        * Print the prompt ($> )
+    * [ ] Read line
+    * [ ] Add to history
+
+### LEXER
+* [ ] Tokenize the input (return a list of tokens)
+    * [ ] Handle quotes
+    * [ ] Handle escape characters
+    * [ ] Handle redirections
+    * [ ] Handle pipes
+    * [ ] Handle semicolons
+    * [ ] Handle newlines
+    * [ ] Handle EOF
+
+### EXPANDER
+* [ ] Expand the tokens
+    * [ ] Handle environment variables
+        example: $HOME -> /home/user (attention to quotes double quotes edge cases)
+    * [ ] Handle tilde
+        * ~ -> home directory
+    * [ ] Handle wildcard (bonus) -> glob -> create a copy of the command with the wildcard expanded
+    * [ ] Handle command substitution 
+        * example: echo $(ls) -> execute ls and replace the $(ls) with the output of the command
+
+### PARSER
+* [ ] Parse the tokens (return a list of commands)
+    * [ ] Handle redirections
+    * [ ] Handle pipes
+    * [ ] Handle semicolons
+    * [ ] Handle newlines
+    * [ ] Handle EOF
+
+### EXECUTOR
+* [ ] Execute the commands
+    * [ ] Handle redirections (open files and redirect stdin, stdout, stderr)
+    * [ ] Handle executables
+        * [ ] Handle builtins
+            * [ ] echo
+            * [ ] cd (cd - and cd ~)
+            * [ ] pwd
+            * [ ] export
+            * [ ] unset
+            * [ ] env
+            * [ ] exit
+    * [ ] wait for the children to finish and handle errors
+    * [ ] clean memory, loop will restart
 
 ### Interfaces 
 Lexer will return a list of tokens
